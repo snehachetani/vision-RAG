@@ -1,5 +1,4 @@
-"""Central configuration: env vars, model names, paths, and Q
-drant settings."""
+"""Central configuration: env vars, model names, paths, and Qdrant settings."""
 
 import os
 from pathlib import Path
