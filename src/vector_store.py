@@ -56,3 +56,15 @@ def upsert_page(point_id, multivector, pdf_name, page_number, image_path) -> Non
             )
         ],
     )
+
+
+def search(query_multivector: list[list[float]], top_k: int = TOP_K) -> list[dict]:
+    """Return the top-k pages for a query multivector, best score first."""
+    client = get_client()
+    response = client.query_points(
+        collection_name=COLLECTION_NAME,
+        query=query_multivector,
+        limit=top_k,
+        with_payload=True,
+    )
+    return [{**p.payload, "score": round(p.score, 4)} for p in response.points]
