@@ -7,7 +7,8 @@ load_dotenv()
 ROOT_DIR = Path(__file__).resolve().parent.parent
 PDFS_DIR = ROOT_DIR / "pdfs"
 PAGE_IMAGES_DIR = ROOT_DIR / "page_images"
-QDRANT_PATH = ROOT_DIR / "qdrant_data"
+# QDRANT_PATH = ROOT_DIR / "qdrant_data"
+QDRANT_URL = os.environ.get("QDRANT_URL", "http://localhost:6333")
 
 # pdf2image
 POPPLER_PATH = r"C:\poppler\poppler-26.02.0\Library\bin"

@@ -1,9 +1,5 @@
 """Ingest CLI: PDF pages -> page PNGs -> ColPali multivectors -> Qdrant."""
 
-from accelerate import parallelism_config
-from colpali_engine.models import paligemma
-from colpali_engine.models import paligemma
-from colpali_engine.models import paligemma
 import sys
 from pathlib import Path
 

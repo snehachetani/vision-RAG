@@ -4,15 +4,17 @@ from pathlib import Path
 from qdrant_client import QdrantClient
 from qdrant_client import models as qm
 
-from src.config import COLLECTION_NAME, QDRANT_PATH, TOP_K, VECTOR_DIM
+from src.config import COLLECTION_NAME, QDRANT_URL, TOP_K, VECTOR_DIM
+#from src.config import QDRANT_PATH
 
 _client: QdrantClient | None = None
 
 def get_client() -> QdrantClient:
-    """Open the on-disk Qdrant store once and reuse the connection."""
+    """Open the Qdrant store once and reuse the connection."""
     global _client
     if _client is None:
-        _client = QdrantClient(path=str(QDRANT_PATH))
+        _client = QdrantClient(url=QDRANT_URL)
+        #_client = QdrantClient(path=str(QDRANT_PATH))
     return _client
 
 
@@ -39,6 +41,11 @@ def ensure_collection(reset: bool = False) -> None:
                 multivector_config=qm.MultiVectorConfig(
                     comparator=qm.MultiVectorComparator.MAX_SIM
                 ),
+            ),
+            quantization_config=qm.BinaryQuantization(
+                binary=qm.BinaryQuantizationConfig(
+                    always_ram=True
+                )
             ),
         )
 
