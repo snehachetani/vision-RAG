@@ -9,3 +9,11 @@ wheels/
 # Virtual environments
 .venv
 .env
+
+# Database Storage (Docker / Local Qdrant)
+qdrant_data/
+qdrant_storage/
+
+# Rendered images & PDFs
+page_images/
+pdfs/
